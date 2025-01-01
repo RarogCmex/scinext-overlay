@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>denis7774@gmail.com</email>
-		<name>Denis Reva</name>
+		<name>RarogCmex</name>
 	</maintainer>
 	<upstream>
 		<remote-id type="github">NVIDIA/cutlass</remote-id>
