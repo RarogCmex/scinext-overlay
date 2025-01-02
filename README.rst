@@ -12,7 +12,7 @@ If you notice outdated packages, please contact me.
 Adding the repository
 ---------------------
 
-This is actual untill the repo will added to official overlay index.
+This is actual untill the repo will be added to official overlay index.
 
 Add the repository via:
 ::
