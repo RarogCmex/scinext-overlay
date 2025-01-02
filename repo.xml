@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>scinext-overlay</name>
+    <description>Gentoo package overlay with "next-gen", scientific and helpful packages</description>
+    <homepage>https://github.com/RarogCmex/scinext-overlay</homepage>
+    <owner type="project">
+      <email>denis7774@gmail.com</email>
+      <name>RarogCmex</name>
+    </owner>
+    <source type="git">https://github.com/RarogCmex/scinext-overlay.git</source>
+  </repo>
+</repositories>
