@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>denis7774@gmail.com</email>
+		<name>RarogCmex</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">pytorch/vision</remote-id>
+	</upstream>
+	<use>
+		<flag name="cuda">Enable Nvidia Cuda support</flag>
+		<flag name="nvdec">Enable support for Nvidia Decoder (nvdec) using proprietary headers, requires >=dev-util/nvidia-cuda-toolkit-12.2</flag>
+	</use>
+</pkgmetadata>
