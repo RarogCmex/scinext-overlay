@@ -53,7 +53,8 @@ RDEPEND="$(python_gen_cond_dep '
 REQUIRED_USE="
 	cuda? ( ffmpeg jpeg png )
 	nvdec? ( cuda )"
-#	dev-qt/qtcore:5 ?
+
+
 DEPEND="${RDEPEND}"
 # shellcheck disable=SC2016
 BDEPEND="test? ( $(python_gen_cond_dep '
