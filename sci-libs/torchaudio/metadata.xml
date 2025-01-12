@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>denis7774@gmail.com</email>
+		<name>RarogCmex</name>
+	</maintainer>
+	<use>
+		<flag name="rocm">Enable ROCm gpu computing support</flag>
+		<flag name="rnnt">Enable custom RNN-T loss function</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">pytorch/audio</remote-id>
+	</upstream>
+</pkgmetadata>
