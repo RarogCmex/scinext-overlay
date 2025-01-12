@@ -1,8 +1,12 @@
 scinext-overlay
 ===============
 
-The main purpose for this repository is to provide experimental but ready for production packages.
+.. image:: favicon.webp
+        :width: 200 px
+        :align: center
+        :alt: Logotype of the project
 
+The main purpose for this repository is to provide experimental but ready for production packages.
 
 Product Quality
 -----------------
