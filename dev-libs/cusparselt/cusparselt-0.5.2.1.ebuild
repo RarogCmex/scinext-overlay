@@ -11,7 +11,7 @@ S="${WORKDIR}/libcusparse_lt-linux-x86_64-${PV}-archive"
 LICENSE="NVIDIA-cuSPARSELt"
 SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux"
-RESTRICT="bindist mirror"
+RESTRICT="bindist"
 
 RDEPEND="=dev-util/nvidia-cuda-toolkit-12*"
 
