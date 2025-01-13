@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="project">
+	<maintainer type="person">
 	<email>denis7774@gmail.com</email>
-<name>RarogCmex</name>
+	<name>RarogCmex</name>
 </maintainer>
 <!-- thanks wangjiezhe from https://github.com/wangjiezhe/gentoo-local -->
 <!-- wangjiezhe@gmail.com -->
