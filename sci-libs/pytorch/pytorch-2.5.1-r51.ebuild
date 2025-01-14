@@ -177,14 +177,6 @@ src_prepare(){
 		aten/src/ATen/CMakeLists.txt \
 		|| die
 
-	# Change libc10* path
-	sed -i \
-		-e "/EXPORT/s|DESTINATION lib)|DESTINATION $(get_libdir))|" \
-		c10/cuda/CMakeLists.txt \
-		c10/CMakeLists.txt \
-		c10/hip/CMakeLists.txt \
-		|| die
-
 	default
 
 	pushd torch/csrc/jit/serialization || die
