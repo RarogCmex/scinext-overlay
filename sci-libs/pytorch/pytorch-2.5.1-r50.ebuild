@@ -71,7 +71,6 @@ RDEPEND="
 	onednn? ( =dev-libs/oneDNN-3.5* )
 	opencl? ( virtual/opencl )
 	qnnpack? (
-		!sci-libs/QNNPACK
 		dev-cpp/gemmlowp
 	)
 	rocm? (
