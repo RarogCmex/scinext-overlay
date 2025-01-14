@@ -19,9 +19,9 @@ SRC_URI="https://github.com/pytorch/${PN}/archive/refs/tags/v${PV}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
+IUSE="cuda distributed fbgemm flash-attention gloo mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan"
 RESTRICT="test"
 
-IUSE="cuda distributed fbgemm flash-attention gloo mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan"
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
 	mpi? ( distributed )
@@ -191,8 +191,6 @@ src_prepare(){
 	pushd torch/csrc/jit/serialization || die
 	flatc --cpp --gen-mutable --scoped-enums mobile_bytecode.fbs || die
 	popd
-
-
 
 	# prefixify the hardcoded paths, after all patches are applied
 	hprefixify \

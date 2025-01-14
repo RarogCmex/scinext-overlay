@@ -8,7 +8,7 @@
 	<use>
 		<flag name="distributed">Support distributed applications (works with multiple computer nodes)</flag>
 		<flag name="fbgemm">Use FBGEMM</flag>
-		<flag name="flash_attention">Enable flash and memory efficient attention</flag>
+		<flag name="flash-attention">Enable flash and memory efficient attention</flag>
 		<flag name="gloo">Use sci-libs/gloo for distributed computing</flag>
 		<flag name="mkl">Use <pkg>sci-libs/mkl</pkg> for blas, lapack and sparse blas routines</flag>
 		<flag name="nnpack">Use NNPACK</flag>
