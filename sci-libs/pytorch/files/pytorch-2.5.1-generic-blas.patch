@@ -1,0 +1,43 @@
+From e0f0e1fb1d39a80e2a0111bad33fb3d9f994917e Mon Sep 17 00:00:00 2001
+From: John Parent <john.parent@kitware.com>
+Date: Tue, 10 Sep 2024 14:40:30 -0400
+Subject: [PATCH] Dependencies: Ensure generic BLAS provider found status is
+ correct
+
+Further CMake issues: correct useage of env variables in conditional
+---
+ cmake/Dependencies.cmake | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/cmake/Dependencies.cmake b/cmake/Dependencies.cmake
+index 1dc33efec7b87..bbffdae396d98 100644
+--- a/cmake/Dependencies.cmake
++++ b/cmake/Dependencies.cmake
+@@ -228,17 +228,19 @@ elseif(BLAS STREQUAL "FlexiBLAS")
+   list(APPEND Caffe2_DEPENDENCY_LIBS ${FlexiBLAS_LIB})
+ elseif(BLAS STREQUAL "Generic")
+   # On Debian family, the CBLAS ABIs have been merged into libblas.so
+-  if(ENV{GENERIC_BLAS_LIBRARIES} STREQUAL "")
+-    set(GENERIC_BLAS "blas")
+-  else()
++  if(DEFINED ENV{GENERIC_BLAS_LIBRARIES})
+     set(GENERIC_BLAS $ENV{GENERIC_BLAS_LIBRARIES})
++  else()
++    set(GENERIC_BLAS "blas")
+   endif()
+   find_library(BLAS_LIBRARIES NAMES ${GENERIC_BLAS})
+-  message("-- Using BLAS: ${BLAS_LIBRARIES}")
+-  list(APPEND Caffe2_DEPENDENCY_LIBS ${BLAS_LIBRARIES})
+-  set(GENERIC_BLAS_FOUND TRUE)
+-  set(BLAS_INFO "generic")
+-  set(BLAS_FOUND 1)
++  if(BLAS_LIBRARIES)
++    message("-- Using BLAS: ${BLAS_LIBRARIES}")
++    list(APPEND Caffe2_DEPENDENCY_LIBS ${BLAS_LIBRARIES})
++    set(GENERIC_BLAS_FOUND TRUE)
++    set(BLAS_INFO "generic")
++    set(BLAS_FOUND 1)
++  endif()
+ else()
+   message(FATAL_ERROR "Unrecognized BLAS option: " ${BLAS})
+ endif()

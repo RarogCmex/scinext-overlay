@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>denis7774@gmail.com</email>
+		<name>RarogCmex</name>
+	</maintainer>
+	<use>
+		<flag name="distributed">Support distributed applications (works with multiple computer nodes)</flag>
+		<flag name="fbgemm">Use FBGEMM</flag>
+		<flag name="flash_attention">Enable flash and memory efficient attention</flag>
+		<flag name="gloo">Use sci-libs/gloo for distributed computing</flag>
+		<flag name="mkl">Use <pkg>sci-libs/mkl</pkg> for blas, lapack and sparse blas routines</flag>
+		<flag name="nnpack">Use NNPACK</flag>
+		<flag name="numpy">Add support for math operations through numpy</flag>
+		<flag name="onednn">Use oneDNN</flag>
+		<flag name="openblas">Use <pkg>sci-libs/openblas</pkg> for blas routines</flag>
+		<flag name="openmp">Use OpenMP for parallel code</flag>
+		<flag name="qnnpack">Use QNNPACK</flag>
+		<flag name="rocm">Enable ROCm gpu computing support</flag>
+		<flag name="xnnpack">Use XNNPACK</flag>
+		<flag name="atlas">Experimental: Use <pkg>sci-libs/atlas</pkg> for blas, lapack and sparse blas routines</flag>
+		<flag name="mimalloc">Use <pkg>dev-libs/mimalloc</pkg> as malloc allocator statically</flag>
+		<flag name="numa">Add support for non-uniform memory systems via <pkg>sys-process/numactl</pkg></flag>
+	</use>
+	<upstream>
+		<remote-id type="github">pytorch/pytorch</remote-id>
+	</upstream>
+</pkgmetadata>
