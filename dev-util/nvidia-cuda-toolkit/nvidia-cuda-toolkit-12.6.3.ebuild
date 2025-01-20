@@ -16,7 +16,7 @@ LICENSE="NVIDIA-CUDA"
 SLOT="0/${PV}"
 KEYWORDS="-* ~amd64 ~amd64-linux"
 IUSE="debugger examples nsight profiler rdma vis-profiler sanitizer"
-RESTRICT="bindist mirror"
+RESTRICT="bindist"
 
 # since CUDA 11, the bundled toolkit driver (== ${DRIVER_PV}) and the
 # actual required minimum driver version are different.
