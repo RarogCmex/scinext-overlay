@@ -19,7 +19,7 @@ SRC_URI="https://github.com/pytorch/${PN}/archive/refs/tags/v${PV}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="cuda distributed fbgemm flash-attention gloo mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan"
+IUSE="cuda distributed fbgemm flash-attention gloo magma mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan"
 RESTRICT="test"
 
 REQUIRED_USE="
@@ -63,6 +63,7 @@ RDEPEND="
 	)
 	fbgemm? ( >=dev-libs/FBGEMM-2023.12.01 )
 	gloo? ( sci-libs/gloo[cuda?] )
+	magma? ( sci-libs/magma )
 	mpi? ( virtual/mpi )
 	nnpack? ( sci-libs/NNPACK )
 	numpy? ( $(python_gen_cond_dep '
@@ -243,7 +244,7 @@ src_configure(){
 	USE_DISTRIBUTED=$(usex distributed 1 0)
 	USE_FBGEMM=$(usex fbgemm 1 0)
 	USE_KINETO=0 # TODO: It seems that out-of-source kineto is broken at this point. Wait till 2.6.0
-	USE_MAGMA=0 # TODO: Add magma support
+	USE_MAGMA=$(usex magma 1 0)
 	USE_MIMALLOC=$(usex mimalloc 1 0)
 	USE_MPI=$(usex mpi 1 0)
 	USE_NNPACK=$(usex nnpack 1 0)
