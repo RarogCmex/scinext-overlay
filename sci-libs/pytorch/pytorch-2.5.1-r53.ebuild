@@ -151,12 +151,8 @@ pkg_pretend(){
 }
 
 src_prepare(){
-
-	# TODO: Improve this abomination
 	addpredict "/proc/self/task/"
-	MAX_JOBS=$(makeopts_jobs)
-	MAKEOPTS=-j1
-	export MAKEOPTS MAX_JOBS
+	export MAX_JOBS=$(makeopts_jobs) MAKEOPTS="-j1"
 
 	filter-lto #bug 862672
 
@@ -183,6 +179,12 @@ src_prepare(){
 	flatc --cpp --gen-mutable --scoped-enums mobile_bytecode.fbs || die
 	popd
 
+	# Kineto
+	sed -i 's/set(KINETO_LIBRARY_TYPE "static"/set(KINETO_LIBRARY_TYPE "shared"/g' cmake/Dependencies.cmake ||die
+	sed -i '/KINETO_SOURCE_DIR/d' cmake/Dependencies.cmake || die
+	sed -i '/if(NOT TARGET kineto)/a find_package(kineto CONFIG NAMES kinetoLibrary REQUIRED PATHS /usr/share/cmake/kineto/)' cmake/Dependencies.cmake || die
+	sed -i '/if(USE_KINETO)/a target_include_directories(torch_cpu PRIVATE ${PROJECT_SOURCE_DIR}/c10/util)' caffe2/CMakeLists.txt || die
+
 	# prefixify the hardcoded paths, after all patches are applied
 	hprefixify \
 		aten/CMakeLists.txt \
@@ -208,7 +210,6 @@ src_prepare(){
 		${EPYTHON} tools/amd_build/build_amd.py || die
 		eend $?
 	fi
-
 }
 
 src_configure(){
@@ -239,7 +240,7 @@ src_configure(){
 	# Main settings:
 	USE_DISTRIBUTED=$(usex distributed 1 0)
 	USE_FBGEMM=$(usex fbgemm 1 0)
-	USE_KINETO=0 # TODO: Add proper support for kineto as profiling library
+	USE_KINETO=0 # TODO: It seems that out-of-source kineto is broken at this point. Wait till 2.6.0
 	USE_MAGMA=0 # TODO: Add magma support
 	USE_MIMALLOC=$(usex mimalloc 1 0)
 	USE_MPI=$(usex mpi 1 0)
@@ -310,7 +311,7 @@ src_configure(){
 		USE_CUSPARSELT=1
 		USE_CUDSS=1
 		USE_CUFILE=1 # TODO: Check if it is bundled in cuda toolkit 11.8
-		USE_NCCL=1 # TODO: NVIDIA Collective Communication Library
+		USE_NCCL=1
 		export USE_CUDA USE_CUDNN USE_CUSPARSELT USE_CUDSS USE_CUFILE USE_NCCL
 		# Cuda flags
 		CMAKE_CUDA_FLAGS="$(cuda_gccdir -f | tr -d \")"
@@ -325,12 +326,12 @@ src_configure(){
 
 	# Intel OneAPI settings
 	export USE_MKLDNN=$(usex onednn 1 0) USE_XPU=OFF
+	# TODO: USE_XPU requires big effort to support, and it seems that intel have already dropped this idea.
+	# However, it is good to keep tracking for it
 	if use onednn; then
 		MKLDNN_FOUND=ON
 		MKLDNN_LIBRARIES=dnnl
 		MKLDNN_INCLUDE_DIR="${ESYSROOT}/usr/include/oneapi/dnnl"
-		#TODO: Find out what is XPU
-		#USE_XPU=$(usex onednn)
 		export MKLDNN_FOUND MKLDNN_LIBRARIES MKLDNN_INCLUDE_DIR
 	fi
 
