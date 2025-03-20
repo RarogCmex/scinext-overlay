@@ -25,7 +25,7 @@ PATCHES=(
 )
 
 RDEPEND="
-	>=sci-libs/pytorch-1.6.0[${PYTHON_SINGLE_USEDEP}]
+	>=sci-ml/pytorch-1.6.0[${PYTHON_SINGLE_USEDEP}]
 	$(python_gen_cond_dep '
 		>=dev-python/numpy-1.19[${PYTHON_USEDEP}]
 		>=dev-python/scipy-1.5[${PYTHON_USEDEP}]
