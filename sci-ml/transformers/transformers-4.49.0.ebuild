@@ -22,8 +22,8 @@ KEYWORDS="~amd64"
 RESTRICT="test" # Need some modules, not yet packaged
 
 RDEPEND="
-	>=sci-libs/tokenizers-0.21[${PYTHON_SINGLE_USEDEP}]
-	<sci-libs/tokenizers-0.22
+	>=sci-ml/tokenizers-0.21[${PYTHON_SINGLE_USEDEP}]
+	<sci-ml/tokenizers-0.22
 	$(python_gen_cond_dep '
 		dev-python/filelock[${PYTHON_USEDEP}]
 		dev-python/numpy[${PYTHON_USEDEP}]
@@ -32,8 +32,8 @@ RDEPEND="
 		dev-python/regex[${PYTHON_USEDEP}]
 		dev-python/requests[${PYTHON_USEDEP}]
 		dev-python/tqdm[${PYTHON_USEDEP}]
-		sci-libs/huggingface_hub[${PYTHON_USEDEP}]
-		>=sci-libs/safetensors-0.4.1[${PYTHON_USEDEP}]
+		sci-ml/huggingface_hub[${PYTHON_USEDEP}]
+		>=sci-ml/safetensors-0.4.1[${PYTHON_USEDEP}]
 	')
 "
 

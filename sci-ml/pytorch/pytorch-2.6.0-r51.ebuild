@@ -46,8 +46,8 @@ RDEPEND="
 	dev-libs/protobuf:=
 	dev-libs/pthreadpool
 	dev-libs/sleef
-	sci-libs/foxi
-	sci-libs/onnx
+	sci-ml/foxi
+	sci-ml/onnx
 	virtual/lapack
 	mimalloc? ( dev-libs/mimalloc )
 	atlas? ( sci-libs/atlas[fortran,lapack] )
@@ -61,11 +61,11 @@ RDEPEND="
 		dev-libs/cudss
 		dev-libs/nccl
 	)
-	fbgemm? ( >=dev-libs/FBGEMM-2023.12.01 )
-	gloo? ( sci-libs/gloo[cuda?] )
+	fbgemm? ( >=sci-ml/FBGEMM-2023.12.01 )
+	gloo? ( sci-ml/gloo[cuda?] )
 	magma? ( sci-libs/magma )
 	mpi? ( virtual/mpi )
-	nnpack? ( sci-libs/NNPACK )
+	nnpack? ( sci-ml/NNPACK )
 	numpy? ( $(python_gen_cond_dep '
 		dev-python/numpy[${PYTHON_USEDEP}]
 		') )
@@ -94,10 +94,10 @@ RDEPEND="
 		amdgpu_targets_gfx942? ( =sci-libs/hipBLASLt-6.1*[amdgpu_targets_gfx942] )
 	)
 	distributed? (
-		sci-libs/tensorpipe[cuda?]
+		sci-ml/tensorpipe[cuda?]
 		dev-cpp/cpp-httplib
 	)
-	xnnpack? ( >=sci-libs/XNNPACK-2024.02.29 )
+	xnnpack? ( >=sci-ml/XNNPACK-2024.02.29 )
 	mkl? ( sci-libs/mkl )
 	openblas? ( sci-libs/openblas )
 	${PYTHON_DEPS}
@@ -115,7 +115,7 @@ DEPEND="
 	dev-libs/FXdiv
 	dev-libs/pocketfft
 	dev-libs/flatbuffers
-	>=sci-libs/kineto-0.4.0_p20240525
+	>=sci-ml/kineto-0.4.0_p20240525
 	$(python_gen_cond_dep '
 		dev-python/pyyaml[${PYTHON_USEDEP}]
 		dev-python/pybind11[${PYTHON_USEDEP}]

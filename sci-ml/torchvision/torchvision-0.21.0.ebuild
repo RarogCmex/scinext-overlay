@@ -28,7 +28,7 @@ RDEPEND="$(python_gen_cond_dep '
 		dev-python/requests[${PYTHON_USEDEP}]
 		dev-python/scipy[${PYTHON_USEDEP}]
 	')
-	sci-libs/pytorch[cuda?,${PYTHON_SINGLE_USEDEP}]
+	sci-ml/pytorch[cuda?,${PYTHON_SINGLE_USEDEP}]
 	ffmpeg? ( media-video/ffmpeg )
 	jpeg? ( media-libs/libjpeg-turbo )
 	png? ( media-libs/libpng )

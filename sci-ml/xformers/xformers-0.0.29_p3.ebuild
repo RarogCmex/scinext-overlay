@@ -36,7 +36,7 @@ RESTRICT="test"
 SLOT="0/$(ver_cut 1-2 ${PV})"
 IUSE=""
 RDEPEND="
-	=sci-libs/pytorch-2.6*[cuda,${PYTHON_SINGLE_USEDEP}]
+	=sci-ml/pytorch-2.6*[cuda,${PYTHON_SINGLE_USEDEP}]
 	$(python_gen_cond_dep '
 		dev-python/numpy[${PYTHON_USEDEP}]
 	')

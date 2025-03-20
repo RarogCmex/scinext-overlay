@@ -28,7 +28,7 @@ DEPEND="
 #TODO: ffmpeg-7 when it comes: https://github.com/pytorch/audio/issues/3857
 RDEPEND="
 	${DEPEND}
-	>=sci-libs/pytorch-2.6.0-r50[cuda?,rocm?,openmp?,${PYTHON_SINGLE_USEDEP}]
+	>=sci-ml/pytorch-2.6.0-r50[cuda?,rocm?,openmp?,${PYTHON_SINGLE_USEDEP}]
 "
 BDEPEND="
 	test? (
