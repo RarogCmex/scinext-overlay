@@ -111,7 +111,7 @@ DEPEND="
 	${RDEPEND}
 	onednn? ( sci-libs/ideep )
 	dev-libs/psimd
-	sci-libs/FP16
+	sci-ml/FP16
 	dev-libs/FXdiv
 	dev-libs/pocketfft
 	dev-libs/flatbuffers
