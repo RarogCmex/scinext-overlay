@@ -19,7 +19,7 @@ SRC_URI="https://github.com/pytorch/${PN}/archive/refs/tags/v${PV}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="cuda distributed fbgemm flash-attention gloo magma mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan"
+IUSE="cuda distributed fbgemm flash-attention gloo magma mkl mpi nnpack numa +numpy onednn openblas atlas opencl openmp qnnpack rocm xnnpack mimalloc vulkan nccl"
 RESTRICT="test"
 
 REQUIRED_USE="
@@ -31,6 +31,7 @@ REQUIRED_USE="
 		|| ( ${ROCM_REQUIRED_USE} )
 		!flash-attention
 	)
+	nccl? ( cuda )
 "
 
 RDEPEND="
@@ -59,7 +60,7 @@ RDEPEND="
 		=dev-libs/cutlass-3.4*
 		dev-libs/cusparselt
 		dev-libs/cudss
-		dev-libs/nccl
+		nccl? ( dev-libs/nccl )
 	)
 	fbgemm? ( >=sci-ml/FBGEMM-2023.12.01 )
 	gloo? ( sci-ml/gloo[cuda?] )
@@ -314,7 +315,7 @@ src_configure(){
 		USE_CUSPARSELT=1
 		USE_CUDSS=1
 		USE_CUFILE=1 # TODO: Check if it is bundled in cuda toolkit 11.8
-		USE_NCCL=1
+		USE_NCCL=$(usex nccl 1 0)
 		export USE_CUDA USE_CUDNN USE_CUSPARSELT USE_CUDSS USE_CUFILE USE_NCCL
 		# Cuda flags
 		CMAKE_CUDA_FLAGS="$(cuda_gccdir -f | tr -d \")"

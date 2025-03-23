@@ -22,6 +22,8 @@
 		<flag name="atlas">Experimental: Use <pkg>sci-libs/atlas</pkg> for blas, lapack and sparse blas routines</flag>
 		<flag name="mimalloc">Use <pkg>dev-libs/mimalloc</pkg> as malloc allocator statically</flag>
 		<flag name="numa">Add support for non-uniform memory systems via <pkg>sys-process/numactl</pkg></flag>
+		<flag name="nccl">Add support for Optimized primitives for collective multi-GPU communication	via <pkg>dev-libs/nccl</pkg></flag>
+
 	</use>
 	<upstream>
 		<remote-id type="github">pytorch/pytorch</remote-id>
