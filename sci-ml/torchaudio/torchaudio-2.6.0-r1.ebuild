@@ -8,7 +8,7 @@ DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 ROCM_SKIP_GLOBALS=1
-inherit cuda distutils-r1 multiprocessing rocm optfeature
+inherit cuda distutils-r1 multiprocessing rocm optfeature # ffmpeg-compat
 
 DESCRIPTION="Data manipulation and transformation for audio signal processing"
 HOMEPAGE="https://github.com/pytorch/audio"
@@ -23,7 +23,7 @@ REQUIRED_USE="
 	?? ( cuda rocm )"
 
 DEPEND="
-	ffmpeg? ( <media-video/ffmpeg-7:= )
+	ffmpeg? ( media-video/ffmpeg )
 "
 #TODO: ffmpeg-7 when it comes: https://github.com/pytorch/audio/issues/3857
 RDEPEND="
