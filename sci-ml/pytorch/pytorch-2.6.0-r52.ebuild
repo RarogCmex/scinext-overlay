@@ -55,7 +55,7 @@ RDEPEND="
 	numa? ( sys-process/numactl )
 	cuda? (
 		dev-libs/cudnn
-		>=dev-libs/cudnn-frontend-1.9.0:0/8
+		>=sci-ml/cudnn-frontend-1.9.0:0/8
 		dev-util/nvidia-cuda-toolkit:=[profiler]
 		=dev-libs/cutlass-3.4*
 		dev-libs/cusparselt
