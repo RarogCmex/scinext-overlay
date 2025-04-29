@@ -1,0 +1,12 @@
+###
+# Kubernetes Kubelet (worker) config
+# If exists kubeadm-flags, then source it
+if [ -e /var/lib/kubelet/kubeadm-flags.env ]; then
+  source /var/lib/kubelet/kubeadm-flags.env;
+fi
+# Pre-defined command-line args for  kubeadm
+# Feel free to modify
+command_args="--config /var/lib/kubelet/config.yaml \
+	--kubeconfig=/etc/kubernetes/kubelet.conf \
+	--bootstrap-kubeconfig /etc/kubernetes/bootstrap-kubelet.conf \
+	${KUBELET_KUBEADM_ARGS}"
