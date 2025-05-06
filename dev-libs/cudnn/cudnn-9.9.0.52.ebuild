@@ -19,7 +19,8 @@ SLOT="0/8"
 KEYWORDS="~amd64 ~amd64-linux"
 RESTRICT=""
 
-RDEPEND="=dev-util/nvidia-cuda-toolkit-12*"
+RDEPEND="=dev-util/nvidia-cuda-toolkit-12*
+	>=x11-drivers/nvidia-drivers-525.60.13"
 
 QA_PREBUILT="/opt/cuda/targets/x86_64-linux/lib/*"
 
