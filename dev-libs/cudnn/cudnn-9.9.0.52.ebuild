@@ -19,7 +19,8 @@ SLOT="0/8"
 KEYWORDS="~amd64 ~amd64-linux"
 RESTRICT=""
 
-RDEPEND="=dev-util/nvidia-cuda-toolkit-12*"
+RDEPEND=">=dev-util/nvidia-cuda-toolkit-12.8
+	<=dev-util/nvidia-cuda-toolkit-12.9"
 
 QA_PREBUILT="/opt/cuda/targets/x86_64-linux/lib/*"
 
