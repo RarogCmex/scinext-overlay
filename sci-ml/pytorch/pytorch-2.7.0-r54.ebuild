@@ -193,13 +193,6 @@ src_prepare(){
 		cmake/ProtoBuf.cmake \
 		aten/src/ATen/CMakeLists.txt \
 		|| die
-	# Change libc10* path
-	sed -i \
-		-e "/EXPORT/s|DESTINATION lib)|DESTINATION $(get_libdir))|" \
-		c10/cuda/CMakeLists.txt \
-		c10/CMakeLists.txt \
-		c10/hip/CMakeLists.txt \
-		|| die
 	sed -i \
 		-e '/Using pocketfft in directory:/d' \
 		cmake/Dependencies.cmake \
