@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{11,12,13} )
+PYTHON_COMPAT=( python3_{10,11,12,13} )
 DISTUTILS_EXT=1
 DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=setuptools
@@ -18,7 +18,7 @@ S="${WORKDIR}/vision-${PV}"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="cuda +jpeg +png +webp +ffmpeg debug"
+IUSE="cuda +jpeg +png +webp +ffmpeg debug nvdec"
 
 # shellcheck disable=SC2016
 RDEPEND="$(python_gen_cond_dep '
@@ -28,20 +28,23 @@ RDEPEND="$(python_gen_cond_dep '
 		dev-python/requests[${PYTHON_USEDEP}]
 		dev-python/scipy[${PYTHON_USEDEP}]
 	')
-	|| (
-		>=sci-ml/pytorch-2.7.0-r54[cuda?,${PYTHON_SINGLE_USEDEP}]
-		sci-ml/caffe2[cuda?]
-	)
+	sci-ml/pytorch[cuda?,${PYTHON_SINGLE_USEDEP}]
 	ffmpeg? ( media-video/ffmpeg )
 	jpeg? ( media-libs/libjpeg-turbo )
 	png? ( media-libs/libpng )
 	webp? ( media-libs/libwebp )
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
+
 		)
+	nvdec? (
+		>=x11-drivers/nvidia-drivers-550
+		>=dev-util/nvidia-cuda-toolkit-12.3.2
+	)
 "
 REQUIRED_USE="
-	cuda? ( ffmpeg jpeg png )"
+	cuda? ( ffmpeg jpeg png )
+	nvdec? ( cuda )"
 
 
 DEPEND="${RDEPEND}"
@@ -53,19 +56,24 @@ BDEPEND="test? ( $(python_gen_cond_dep '
 
 distutils_enable_tests pytest
 
-pkg_pretend() {
-	if use ffmpeg; then
-		ewarn "video decoding/encoding (ffmpeg backend) is being deprecated in torchvision"
-		ewarn "see https://github.com/pytorch/vision/pull/8997"
-	fi
-}
-
 src_prepare() {
 	default
 	addpredict "/proc/self/task/"
 	MAX_JOBS=$(makeopts_jobs)
 	MAKEOPTS=-j1
 	export MAKEOPTS MAX_JOBS
+
+	mkdir -p "${WORKDIR}/include"
+	if use nvdec; then
+		# ToDo: Unbundle
+		einfo "Preparing nvidia codec headers"
+		pushd "${WORKDIR}/include"
+		for file in "${FILESDIR}"/torchvision-0.20.1-video-codec-interface-12.2.72/*; do
+			ln -s "$file" . || die "can't symlink nvidia codec headers"
+		done
+		popd
+	fi
+
 }
 
 src_configure() {
@@ -76,6 +84,7 @@ src_configure() {
 		TORCHVISION_USE_NVJPEG=1
 		TORCHVISION_LIBRARY="/usr/lib64"
 		TORCHVISION_INCLUDE="${WORKDIR}/include"
+		TORCHVISION_USE_VIDEO_CODEC="$(usex nvdec "1" "0")"
 		export FORCE_CUDA NVCC_FLAGS BUILD_CUDA_SOURCES TORCHVISION_USE_NVJPEG TORCHVISION_USE_VIDEO_CODEC TORCHVISION_LIBRARY TORCHVISION_INCLUDE
 	fi
 	export DEBUG="$(usex debug "1" "0")"
