@@ -29,7 +29,7 @@ RDEPEND="$(python_gen_cond_dep '
 		dev-python/scipy[${PYTHON_USEDEP}]
 	')
 	|| (
-		>=sci-ml/pytorch-2.7.0-r54[cuda?,${PYTHON_SINGLE_USEDEP}]
+		>=sci-ml/pytorch-2.7.1-r54[cuda?,${PYTHON_SINGLE_USEDEP}]
 		sci-ml/caffe2[cuda?]
 	)
 	ffmpeg? ( media-video/ffmpeg )
