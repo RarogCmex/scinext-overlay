@@ -20,7 +20,7 @@ HOMEPAGE="https://pytorch.org/"
 FLASH_VER="2.7.4"
 # caffe2-2.6.0 depends on future version of composable kernel
 # TODO: replace it with RDEPEND in the future
-CK_COMMIT=50ee4267e27b875d149e642f4cebd47be1dc3b57
+CK_COMMIT=8086bbe3a78d931eb96fe12fdc014082e18d18d3
 CK_P=composable_kernel-${CK_COMMIT:0:8}
 
 SRC_URI="https://github.com/pytorch/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
@@ -75,7 +75,7 @@ RDEPEND="
 		nccl? ( dev-libs/nccl )
 	)
 	fbgemm? ( >=sci-ml/FBGEMM-2023.12.01 )
-	gloo? ( sci-ml/gloo[cuda?] )
+	gloo? ( <sci-ml/gloo-2025[cuda?] )
 	magma? ( sci-libs/magma )
 	mpi? ( virtual/mpi )
 	nnpack? ( sci-ml/NNPACK )
