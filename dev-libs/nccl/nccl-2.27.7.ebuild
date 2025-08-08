@@ -14,9 +14,7 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=dev-util/nvidia-cuda-toolkit-12.4
-	sys-devel/gcc:13"
-	# TODO: Temporary depends on gcc-13. See comment in src_prepare below
+DEPEND=">=dev-util/nvidia-cuda-toolkit-12.8"
 RDEPEND="${DEPEND}"
 
 DOCS=( README.md LICENSE.txt )
@@ -40,17 +38,13 @@ pkg_pretend() {
 src_prepare() {
 	eapply_user
 	cuda_src_prepare
-	# https://github.com/RarogCmex/scinext-overlay/issues/1
-	# We had to use hardcoded value here because
-	# cuda nccl code is not compatible with gcc-14 somehow
-	# the best version of gcc is 13
-	# The line below must be:
-	# sed -i -e "s|\$(CXX)|$(cuda_gccdir | tr -d \")|" makefiles/common.mk
-	sed -i -e "s|\$(CXX)|/usr/x86_64-pc-linux-gnu/gcc-bin/13/|" makefiles/common.mk
+	sed -i -e "s|\$(CXX)|$(cuda_gccdir | tr -d \")|" makefiles/common.mk || die
+	sed -i -e "s|-ccbin \$(CXX)|$(cuda_gccdir -f | tr -d \")|" src/device/Makefile || die
 }
 
 src_configure() {
 	export CUDA_HOME="${EPREFIX}/opt/cuda"
+	export CXXSTD="-std=c++17"
 	export PREFIX="${EPREFIX}/opt/cuda/targets/x86_64-linux"	# used for nccl.pc
 }
 
