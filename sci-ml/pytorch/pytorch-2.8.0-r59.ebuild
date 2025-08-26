@@ -73,7 +73,8 @@ RDEPEND="
 		dev-libs/cudnn
 		>=sci-ml/cudnn-frontend-1.12.0:=
 		>=dev-util/nvidia-cuda-toolkit-12.9:=[profiler]
-		dev-libs/cudss
+		dev-libs/cudss:=
+		dev-libs/cusparselt:=
 		nccl? ( dev-libs/nccl )
 	)
 	fbgemm? ( sci-ml/FBGEMM )
