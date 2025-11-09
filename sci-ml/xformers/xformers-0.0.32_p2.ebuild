@@ -38,7 +38,7 @@ SLOT="0/$(ver_cut 1-2 ${PV})"
 IUSE=""
 RDEPEND="
 	|| (
-	=sci-ml/pytorch-2.8*[cuda,${PYTHON_SINGLE_USEDEP}]
+	>=sci-ml/pytorch-2.8:=[cuda,${PYTHON_SINGLE_USEDEP}]
 	sci-ml/caffe2[cuda]
 	)
 	$(python_gen_cond_dep '
