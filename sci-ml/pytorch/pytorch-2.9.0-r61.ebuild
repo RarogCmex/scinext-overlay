@@ -64,7 +64,7 @@ RDEPEND="
 	dev-libs/pthreadpool
 	dev-libs/sleef
 	sci-ml/foxi
-	sci-ml/onnx
+	<sci-ml/onnx-1.18.0
 	~sci-ml/kineto-0.4.0_p20250617
 	virtual/lapack
 	atlas? ( sci-libs/atlas[fortran,lapack] )
