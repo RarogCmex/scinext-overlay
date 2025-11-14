@@ -18,7 +18,7 @@ S="${WORKDIR}/vision-${PV}"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="cuda +jpeg +png +webp +ffmpeg debug"
+IUSE="cuda +jpeg +png +webp -ffmpeg debug"
 
 # shellcheck disable=SC2016
 RDEPEND="$(python_gen_cond_dep '
@@ -32,7 +32,7 @@ RDEPEND="$(python_gen_cond_dep '
 		>=sci-ml/pytorch-2.9.0-r60[cuda?,${PYTHON_SINGLE_USEDEP}]
 		sci-ml/caffe2[cuda?]
 	)
-	ffmpeg? ( media-video/ffmpeg )
+	ffmpeg? ( <media-video/ffmpeg-8 )
 	jpeg? ( media-libs/libjpeg-turbo )
 	png? ( media-libs/libpng )
 	webp? ( media-libs/libwebp )
@@ -41,7 +41,7 @@ RDEPEND="$(python_gen_cond_dep '
 		)
 "
 REQUIRED_USE="
-	cuda? ( ffmpeg jpeg png )"
+	cuda? ( jpeg png )"
 
 
 DEPEND="${RDEPEND}"
