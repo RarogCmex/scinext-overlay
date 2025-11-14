@@ -43,10 +43,10 @@ BDEPEND="
 
 RESTRICT="!test? ( test )"
 
-#PATCHES=(
-#	"${FILESDIR}/${PN}-2.7.2-gentoo.patch"
-#	"${FILESDIR}/${PN}-2.7.2-cuda.patch"
-#)
+PATCHES=(
+	"${FILESDIR}/${P}-cmake-policy.patch"
+	"${FILESDIR}/${P}-std-cpp.patch"
+)
 
 pkg_setup() {
 	fortran-2_pkg_setup
